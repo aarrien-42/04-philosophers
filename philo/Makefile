@@ -9,7 +9,7 @@ OBJF = objs
 INC = incs
 
 # Ficheros
-SRC_FILES = main
+SRC_FILES = main utils philo
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 

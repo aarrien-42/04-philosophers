@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:01:28 by aarrien-          #+#    #+#             */
-/*   Updated: 2022/12/28 15:46:00 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:25:41 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,38 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
-
-typedef struct s_fork
-{
-	pthread_mutex_t	f_mutex;
-	int				fork;
-}					t_fork;
+# include "colors.h"
 
 typedef struct s_philo
 {
-	int		ttd;
-	int		tte;
-	int		tts;
-	t_fork	f;
-}		t_philo;
+	int				nb;
+	int				status;
+	struct s_philo	*right;
+	struct s_philo	*left;
+	int				fork;
+	struct s_data	*data;
+}					t_philo;
 
 typedef struct s_data
 {
-	t_philo	*philos;
-	int		nphilo;
-	int		g_ttd;
-	int		g_tte;
-	int		g_tts;
-}			t_data;
+	size_t				start_time;
+	pthread_t			*p;
+	t_philo				*philos;
+	pthread_mutex_t		*forks;
+	int					nphilo;
+	int					tt[4];
+	int					start;
+	int					end;
+}						t_data;
+
+/*-MAIN-*/
+
+/*-UTILS-*/
+int		get_time(t_data *data);
+int		ft_atoi(const char *str);
+
+/*-PHILO*/
+void	*philo(void *arg);
+int		create_philos(t_data *data);
 
 #endif
