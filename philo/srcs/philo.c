@@ -6,32 +6,22 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:21:24 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/09 18:11:04 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:27:47 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/philo.h"
 
-void	take_fork(t_philo *info) // no se coordinan bien al coger los tenedores
+void	take_fork(t_philo *info) // creo que se coordinan bien
 {
-	if (info->nb % 2 == 0)
-	{
-		pthread_mutex_lock(&info->data->forks[info->left->nb - 1]);
-		info->left->fork = 0;
-		printf("%s%d%s %d has taken a fork\n", CYAN, get_time(info->data), CLOSE ,info->nb);
-		pthread_mutex_lock(&info->data->forks[info->right->nb - 1]);
-		info->right->fork = 0;
-		printf("%s%d%s %d has taken a fork\n", CYAN, get_time(info->data), CLOSE ,info->nb);
-	}
-	else
-	{
-		pthread_mutex_lock(&info->data->forks[info->right->nb - 1]);
-		info->right->fork = 0;
-		printf("%s%d%s %d has taken a fork\n", CYAN, get_time(info->data), CLOSE ,info->nb);
-		pthread_mutex_lock(&info->data->forks[info->left->nb - 1]);
-		info->left->fork = 0;
-		printf("%s%d%s %d has taken a fork\n", CYAN, get_time(info->data), CLOSE ,info->nb);
-	}
+	if (info->nb % 2 != 0)
+		usleep(1000);
+	pthread_mutex_lock(&info->data->forks[info->right->nb - 1]);
+	info->right->fork = 0;
+	printf("%s%d%s %d has taken a fork\n", CYAN, get_time(info->data), CLOSE ,info->nb);
+	pthread_mutex_lock(&info->data->forks[info->left->nb - 1]);
+	info->left->fork = 0;
+	printf("%s%d%s %d has taken a fork\n", CYAN, get_time(info->data), CLOSE ,info->nb);
 }
 
 int	routine(t_philo *info)
