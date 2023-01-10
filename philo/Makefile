@@ -15,7 +15,7 @@ OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 # Comandos
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -pthread -fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -g -pthread #-fsanitize=address -g3
 RM = rm -f
 AR = ar rcs
 

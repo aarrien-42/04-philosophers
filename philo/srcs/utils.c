@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:48:26 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/10 10:04:58 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:08:54 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,35 @@ int	check_end(t_data *data)
 	philo_eat = 0;
 	while (i < data->nphilo)
 	{
+		if (data->philos[i].last_eat > data->tt[0])
+			return (put_action(&data->philos[i], 4), 1);
 		if (data->philos[i].eat_count == data->tt[3])
 			philo_eat++;
 		i++;
 	}
-	if (philo_eat == data->nphilo || data->end != 0)
+	if (philo_eat == data->nphilo)
 		return (1);
 	return (0);
+}
+
+void	philo_wait(int milis, t_data *data)
+{
+	int	start;
+
+	start = get_time(data);
+	while (get_time(data) - start <= milis)
+		usleep(1000);
+	data->start_time += get_time(data) % 10;
 }
 
 int	get_time(t_data *data)
 {
 	int				current;
-	int				extra;
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	current = ((tv.tv_sec * 1000) + (tv.tv_usec / 1000)) - data->start_time;
-	extra = current % 100;
-	data->start_time += extra;
-	return (current - extra); // cuidado con la trampa
+	return (current);
 }
 
 int	ft_atoi(const char *str)
