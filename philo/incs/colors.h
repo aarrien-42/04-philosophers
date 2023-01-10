@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:25:23 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/09 17:53:25 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/10 10:03:23 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@
 # define PURPLE	"\033[0;35m"
 # define CYAN	"\033[0;36m"
 # define BOLD	"\033[0;1m"
-# define CLOSE	"\033[0;0m"
+# define X		"\033[0;0m"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:01:28 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/09 17:25:41 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/10 10:00:55 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 typedef struct s_philo
 {
 	int				nb;
-	int				status;
+	int				eat_count;
 	struct s_philo	*right;
 	struct s_philo	*left;
 	int				fork;
@@ -43,12 +43,17 @@ typedef struct s_data
 }						t_data;
 
 /*-MAIN-*/
+int	fill_data(t_data *data);
 
 /*-UTILS-*/
+int		check_input(char **av);
+int		check_end(t_data *data);
 int		get_time(t_data *data);
 int		ft_atoi(const char *str);
 
 /*-PHILO*/
+void	take_fork(t_philo *info);
+int		routine(t_philo *info);
 void	*philo(void *arg);
 int		create_philos(t_data *data);
 

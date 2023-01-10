@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:59:07 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/09 16:31:27 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/10 10:00:34 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	fill_data(t_data *data)
 		data->philos[i - 1].right = &data->philos[i % data->nphilo];
 		data->philos[i - 1].nb = i;
 		data->philos[i - 1].fork = 1;
+		data->philos[i - 1].eat_count = 0;
 	}
 	return (0);
 }
@@ -39,8 +40,10 @@ int	main(int ac, char **av)
 	int		i;
 
 	i = 0;
+	if (check_input(&av[1]) != 0)
+		return (printf("Invalid character\n"), 0);
 	if (ac < 5 || ac > 6)
-		return (printf("Invalid parameters"), 0);
+		return (printf("Invalid parameters\n"), 0);
 	while (av[++i])
 	{
 		if (i > 1)
