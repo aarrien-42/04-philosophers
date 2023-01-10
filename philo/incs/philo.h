@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:01:28 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/10 14:49:28 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:43:33 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_philo
 	int				eat_count;
 	struct s_philo	*right;
 	struct s_philo	*left;
-	int				fork;
 	struct s_data	*data;
 }					t_philo;
 
@@ -37,7 +36,7 @@ typedef struct s_data
 	pthread_t			*p;
 	t_philo				*philos;
 	pthread_mutex_t		*forks;
-	pthread_mutex_t		stop;
+	pthread_mutex_t		lock;
 	int					nphilo;
 	int					tt[4];
 	int					start;

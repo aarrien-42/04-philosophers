@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:48:26 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/10 15:08:54 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:23:22 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ int	check_end(t_data *data)
 	philo_eat = 0;
 	while (i < data->nphilo)
 	{
-		if (data->philos[i].last_eat > data->tt[0])
+		if (get_time(data) - data->philos[i].last_eat > data->tt[0] || \
+			(data->philos[i].last_eat == 0 && get_time(data) > data->tt[0]))
 			return (put_action(&data->philos[i], 4), 1);
-		if (data->philos[i].eat_count == data->tt[3])
+		if (data->tt[3] >= 0 && data->philos[i].eat_count == data->tt[3])
 			philo_eat++;
 		i++;
 	}
