@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:48:26 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/10 16:23:22 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:38:02 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,10 @@ void	philo_wait(int milis, t_data *data)
 
 int	get_time(t_data *data)
 {
-	int				current;
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	current = ((tv.tv_sec * 1000) + (tv.tv_usec / 1000)) - data->start_time;
-	return (current);
+	return (((tv.tv_sec * 1000) + (tv.tv_usec / 1000)) - data->start_time);
 }
 
 int	ft_atoi(const char *str)

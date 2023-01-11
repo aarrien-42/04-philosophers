@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:01:28 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/10 15:43:33 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/11 13:22:45 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_data
 
 /*-MAIN-*/
 int		fill_data(t_data *data);
+void	free_all(t_data *data);
 
 /*-UTILS-*/
 int		check_input(char **av);

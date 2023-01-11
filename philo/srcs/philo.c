@@ -6,11 +6,11 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:21:24 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/10 16:30:28 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/11 13:16:04 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//FALTA: getionar parametro opcional cuando es cero o nada, librear el heap
+//FALTA: librear el heap
 
 #include "../incs/philo.h"
 
@@ -31,7 +31,7 @@ void	put_action(t_philo *info, int action)
 	if (action == 4 && info->data->end == 0)
 	{
 		info->data->end = 1;
-		printf("%s%d%s %d %sDIED%s\n", CYAN, time, X, info->nb, PURPLE, X);
+		printf("%s%d%s %d died\n", CYAN, time, X, info->nb);
 	}
 }
 

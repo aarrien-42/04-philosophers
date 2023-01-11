@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:59:07 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/10 16:27:25 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:56:24 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ int	fill_data(t_data *data)
 	return (0);
 }
 
+void	free_all(t_data *data)
+{
+	free(data->p);
+	free(data->philos);
+	free(data->forks);
+}
+
 int	main(int ac, char **av)
 {
 	t_data	data;
@@ -57,5 +64,6 @@ int	main(int ac, char **av)
 		data.tt[3] = -1;
 	fill_data(&data);
 	create_philos(&data);
+	free_all(&data);
 	return (0);
 }
