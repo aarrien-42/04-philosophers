@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:48:26 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/10 16:38:02 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/12 09:52:32 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int	check_end(t_data *data)
 		i++;
 	}
 	if (philo_eat == data->nphilo)
+	{
+		data->end = 1;
 		return (1);
+	}
 	return (0);
 }
 

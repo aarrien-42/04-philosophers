@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:21:24 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/01/11 13:16:04 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:24:38 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	put_action(t_philo *info, int action)
 	if (action == 4 && info->data->end == 0)
 	{
 		info->data->end = 1;
+		usleep(100);
 		printf("%s%d%s %d died\n", CYAN, time, X, info->nb);
 	}
 }
@@ -72,6 +73,8 @@ void	*philo(void *arg)
 			(info->eat_count < info->data->tt[3] || info->data->tt[3] == -1))
 			routine(info);
 		usleep(1000);
+		if (info->data->end == 1)
+			return (0);
 	}
 	return (0);
 }
@@ -95,5 +98,10 @@ int	create_philos(t_data *data)
 	data->start = 1;
 	while (check_end(data) == 0)
 		;
+	if (data->nphilo == 1)
+		return (0);
+	i = 0;
+	while (++i <= data->nphilo)
+		pthread_join(data->p[i - 1], NULL);
 	return (0);
 }
