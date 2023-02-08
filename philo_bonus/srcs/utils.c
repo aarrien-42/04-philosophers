@@ -6,57 +6,43 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:48:26 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/02/08 18:36:10 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:51:16 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/philo.h"
 
-int	check_input(char **av)
+void	*check_eat(void *arg)
 {
-	int	i;
-	int	j;
+	t_data	*data;
+	int		i;
 
 	i = 0;
-	j = 0;
-	while (av[j])
-	{
-		while (av[j][i])
-		{
-			if (av[j][i] >= '0' && av[j][i] <= '9')
-				i++;
-			else
-				return (1);
-		}
-		i = 0;
-		j++;
-	}
+	data = (t_data *)arg;
+	while (++i <= data->nphilo)
+		sem_wait(data->eat);
+	sem_wait(data->lock);
+	sem_post(data->end);
 	return (0);
 }
 
-int	check_end(t_data *data)
+void	*check_end(void *arg)
 {
-	int			i;
 	static int	philo_eat;
+	t_philo		*info;
 
-	i = 0;
+	info = (t_philo *)arg;
 	philo_eat = 0;
-	while (i < data->nphilo)
+	while (1)
 	{
-		if (get_time(data) - data->philos[i].last_eat > data->tt[0] || \
-			(data->philos[i].last_eat == 0 && get_time(data) > data->tt[0]))
+		if (get_time(info->data) - info->last_eat > info->data->tt[0] || \
+			(info->last_eat == 0 && get_time(info->data) > info->data->tt[0]))
 		{
-			pthread_mutex_lock(&data->lock);
-			return (put_action(&data->philos[i], 4), 1);
+			sem_wait(info->data->lock);
+			sem_post(info->data->end);
+			put_action(info, 4);
+			break ;
 		}
-		if (data->tt[3] >= 0 && data->philos[i].eat_count == data->tt[3])
-			philo_eat++;
-		i++;
-	}
-	if (philo_eat == data->nphilo)
-	{
-		data->end = 1;
-		return (1);
 	}
 	return (0);
 }
@@ -68,8 +54,7 @@ void	philo_wait(int milis, t_data *data)
 	start = get_time(data);
 	start -= start % 10;
 	while (get_time(data) - start <= milis)
-		usleep(1000);
-	data->start_time += get_time(data) % 10;
+		usleep(50);
 }
 
 int	get_time(t_data *data)
