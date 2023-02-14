@@ -24,8 +24,6 @@ AR = ar rcs
 # REGLAS #
 all: $(NAME)
 
-bonus: all
-
 # Compilar conjuntamente
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)

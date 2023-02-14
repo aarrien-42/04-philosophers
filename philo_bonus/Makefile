@@ -1,5 +1,5 @@
 # Normbre del ejecutable
-NAME = philo
+NAME = philo_bonus
 
 # Directorios
 SRC_DIR = srcs/
@@ -23,8 +23,6 @@ AR = ar rcs
 
 # REGLAS #
 all: $(NAME)
-
-bonus: all
 
 # Compilar conjuntamente
 $(NAME): $(OBJ)
