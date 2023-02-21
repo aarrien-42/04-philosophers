@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:59:07 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/02/08 18:35:15 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:15:10 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,5 @@ int	main(int ac, char **av)
 		data.tt[3] = -1;
 	fill_data(&data);
 	create_philos(&data);
-	free_all(&data);
 	return (0);
 }

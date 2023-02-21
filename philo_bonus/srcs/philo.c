@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:21:24 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/02/08 18:50:08 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:51:36 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ void	put_action(t_philo *info, int action)
 	int	time;
 
 	time = get_time(info->data);
-	if (action != 4)
-	{
-		sem_wait(info->data->lock);
-		sem_post(info->data->lock);
-	}
+	sem_wait(info->data->lock);
 	if (action == 0)
 		printf("%s%d%s %d has taken a fork\n", CYAN, time, X, info->nb);
 	if (action == 1)
@@ -33,11 +29,7 @@ void	put_action(t_philo *info, int action)
 		printf("%s%d%s %s%d is sleeping%s\n", CYAN, time, X, RED, info->nb, X);
 	if (action == 3)
 		printf("%s%d%s %d is thinking\n", CYAN, time, X, info->nb);
-	if (action == 4)
-	{
-		usleep(100);
-		printf("%s%d%s %d died\n", CYAN, time, X, info->nb);
-	}
+	sem_post(info->data->lock);
 }
 
 void	take_fork(t_philo *info)

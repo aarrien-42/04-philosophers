@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:48:26 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/02/08 18:51:16 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:52:16 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	*check_end(void *arg)
 		{
 			sem_wait(info->data->lock);
 			sem_post(info->data->end);
-			put_action(info, 4);
+			printf("%s%d%s %d died\n", CYAN, get_time(info->data), X, info->nb);
 			break ;
 		}
 	}

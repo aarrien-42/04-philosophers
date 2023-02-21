@@ -6,7 +6,7 @@
 /*   By: aarrien- <aarrien-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:21:24 by aarrien-          #+#    #+#             */
-/*   Updated: 2023/02/07 17:59:29 by aarrien-         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:54:57 by aarrien-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,9 @@ int	create_philos(t_data *data)
 	while (check_end(data) == 0)
 		;
 	if (data->nphilo == 1)
-		return (0);
+		return (free_all(data), 0);
 	i = 0;
 	while (++i <= data->nphilo)
 		pthread_join(data->p[i - 1], NULL);
-	return (0);
+	return (free_all(data), 0);
 }
